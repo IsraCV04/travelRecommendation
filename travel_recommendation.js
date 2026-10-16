@@ -1,10 +1,12 @@
 
 
 function getRecommendations(){
+    const divInfo = document.getElementById('info');
     const results = document.getElementById('results');
     const userSearch = document.getElementById('recommendationInput').value.toLowerCase().trim();
     const apiURL = "travel_recommendation_api.json"
     
+    divInfo.innerHTML = "";
     results.innerHTML = '';
 
     fetch(apiURL)
@@ -18,14 +20,14 @@ function getRecommendations(){
             if (userSearch.includes('beach')){
                 const beaches = recommendations.beaches;
                 beaches.forEach(beach => {
-                    results.innerHTML += `<img src="${beach.imageURL}" alt="${beach.name}" class="card-image">
+                    results.innerHTML += `<img src="${beach.imageUrl}" alt="${beach.name}" class="card-image">
                                         <h3 class="card-title">${beach.name}</h3>
                                         <p class="card-description">${beach.description}</p>`
                 });  
             }else if(userSearch.includes('temple')){
                 const temples = recommendations.temples;
                 temples.forEach(temple => {
-                    results.innerHTML += `<img src="${temple.imageURL}" alt="${temple.name}" class="card-image">
+                    results.innerHTML += `<img src="${temple.imageUrl}" alt="${temple.name}" class="card-image">
                                         <h3 class="card-title">${temple.name}</h3>
                                         <p class="card-description">${temple.description}</p>`
                 }); 
@@ -51,7 +53,7 @@ function getRecommendations(){
 }
 
 const searchButton = document.getElementById('btnSearch');
-searchButton.onclick = getRecommendations();
+searchButton.onclick = getRecommendations;
 
 
 function clearResults() {
